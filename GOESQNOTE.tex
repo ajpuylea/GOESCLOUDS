@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Reconciling backlogged Cloud Cover Data over the Pierre Auger Observatory
+Using GOES Satellite Data}
+\author{Brain Fick, Andrew Puyleart}
+\date{September 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+The Pierre Auger Observatory is a cosmic ray observatory located near Malargue
+Argentina. It has two main detection methods a surface detector (SD) and a
+fluorescence detector (FD) \cite{P_Abreu}. The fluorescence detectors operate
+during the night hours, detecting the UV light emitted from secondary particles
+interacting with the nitrogen in the atmosphere. This paper will focus entirely
+on the FDs. A cloud detection method was developed previous that used infrared
+capabilities of the GOES class satellites [2]. However it has been some time
+since the published database has been updated. For collaborators to verify that
+there work is valid an update is necessary. Having a robust cloud detection
+method is imperative for the integrity of any science done with the FD because
+clouds can obscure the UV light emissions from reaching the FD detectors. The
+images that the FDs produce when cloud cover is present can mimic interesting
+cosmic ray shower events. An effort was made to make the database modern and
+updated. All  backed up data has been processed and updated through December
+2017. During the month of December 2017 the GOES-13 satellite has been put into
+retirement and the new GOES-16 satellite has taken over its duties. The old
+method may need some revision to process the new GOES-16 image data. We are
+confident that the update using the old methods is correct. We independently
+verified using two methods that the new data being made available is of good
+quality. The first method used GOES-13’s visible waveband to check against our
+infrared method. We also used a data intense method that checked a pixels
+yearly normal color distribution versus the total distribution of a years’
+worth of data for all pixels.  
+
+\section{Visible light method}
+
+Although the FD detectors operate at night and the IR method of cloud detection
+is not normally used during day time hours we thought it would be worth seeing
+if our method closely resembled what is seen during the day. We used GOES-13
+visible light capabilities and our infrared algorithm and compared them side by
+side. 
+
+(insert image) 
+
+Figure 1. On the left: A visible light spectrum image from the GOES-13
+satellite. On the right: An image made using our IR algorithm of the exact same
+time. From inspection you can see pretty good agreement despite the visible
+image being 4 times the resolution. 
+
+Based on these images we concluded that our IR-method was successfully
+processing day-time cloud cover. Some adjustment had to be made in the
+algorithm for the IR-images to work during the day. However We don’t recommend
+the use of this IR method during the day. Several dozens of the images were
+produced as seen in figure 1. 
+
+ \section{Pixel Color Distribution} 
+
+ To determine if the images had any sort of pattern or if the cloud
+distribution across the images were truly random a pixel analysis was done. The
+first step was to determine the average number of occurrences of a given color
+the pixel could be. Each pixel has up to 5 colors corresponding to how probable
+a cloud is in the pixel. We chose to use a grey scale for displaying the
+probability chances \ref{fig:CloudMap}. Once the average was found for each
+color a normal distribution was assumed and a standard deviation of number of
+occurrences was calculated. 
+
+\begin{figure}{hbp} 
+\includegraphics[width = 0.85\textwidth]{CldMap.png}
+ \caption{A sample cloud probability map on the left. A grey scale is used to
+display how likely a cloud is occupying the area in the pixel. The Auger array
+outline is seen in red. The FD are the colored fans.} 
+ \label{fig:CloudMap}
+\end{figure}
+
+Pixels behaving poorly were identified as having above or below a two sigma
+count number from the average. These pixels were plotted on a map of the
+observatory. After seeing some coincidental pixels behaving poorly through
+consecutive years of cloud data we decided to investigate the topography of the
+area \ref{fig:2016_2017}. 
+
+\begin{figure}{hbp} 
+\includegraphics[width = 0.85\textwidth]{BadPixLocations2016.png, BadPixLocations2017.png} 
+  \caption{On the left a is a graph of all two and three sigma count pixels for the year
+2016. On the right is 2017’s two and three sigma count pixels. You can see some
+reoccurring patterns between the years like the feature from pixels 15-19 and
+pixel 359.  Pixels with counts greater than 2 sigma but less than 3 are seen in
+yellow. Pixels with counts greater than 3 sigma are seen in orange.}
+ \label{fig:2016_2017} 
+\end{figure}
+
+A new map was generated with the misbehaving pixel array overlayed on a
+topographic map. Some features were identified as possible candidates for
+elevation causes such as the foothills near Malargue, and the line of inactive
+volcanoes that appear on the bottom right of the area surveyed
+\ref{fig:Elevation09}. 
+
+\begin{figure}{hbp}
+\includegraphics[width = 0.85\textwidth]{BadPixLocations2009,
+BadPixElevations09.png} 
+  \caption{On the left:  a graph showing each pixels ID
+number. The pixels that have a two sigma count number are filled in yellow, the
+three sigma in orange. The Auger array is outlined in salmon. On the right is
+the same data plotted on an elevation map. Red and purple were chosen for the
+two and three sigma count numbers for easier reading. You can see some
+elevation features that may be the cause of these larger problems like on the
+bottom right the old volcano and the bottom left the mountain foothills.}
+ \label{fig:Elevation09}
+\end{figure}
+
+However not all geographical reasons for misbehaving pixels could be claimed. A
+program was written that determined how likely two numerically sequential
+pixels could have 2 or 3 sigma deviations from the average. It was found that
+for a given year there was between an 80-90 percent chance that at least one 2
+sigma or 3 sigma pixel’s neighbor could also be misbehaving. Considering that
+each of our graphs contains 5 different distributions (one for each color the
+pixel can be) the likelihood of two or more pixels having behavior that
+deviated from the average is nearly guaranteed. So the “clumping” behaviors we
+see in these graphs could be considered random and not an artifact of our
+algorithm behaving inappropriately. 
+  
+\section{Conclusion}
+Taking everything into consideration we are happy to give our blessing to the
+last of GOES-13’s data and have updated the cloud database for our
+collaborators to use. The work that remains is transitioning the cloud
+detection method  into a new phase of its life working with the GOES-16
+satellite. We are excited to see how it improves the spacial resolution of our
+IR observation technique. 
+\section{Citations}
+\bibitem{P_Abreu,
+ author = P. Abreu, et al,
+ title = ,
+ journal =,
+ year = 2013,
+ volume = ,
+ pages = ,
+}
+ 
+\end{document}
